@@ -1,0 +1,15 @@
+<div id="box">asdsad</div>
+<script>
+    function fetchDetail(id){
+        fetch('http://localhost:6500/food/'+id, {
+            method: "GET",
+            credentials: "include"
+        }).then(function(response) {
+            response.text().then(function(responseText) {
+                console.log(JSON.parse(responseText));
+            })
+        }, function(error) {
+            error.message //=> String
+        });
+    }
+</script>

@@ -1,0 +1,41 @@
+<div id="box"></div>
+<script>
+    var url = 'http://localhost:6500/foods'
+    fetch(url, {
+        method: "GET",
+        credentials: "include"
+    }).then(function(response) {
+        response.text().then(function(responseText) {
+            var box = document.querySelector('#box');
+            var html = '';
+            var list = JSON.parse(responseText);
+            var num = 1;
+            var htmlArr = [];
+
+            list.forEach(function(value,index){
+                var arr = [
+                    '<li class="span4">',
+                    '<div class="thumbnail">',
+                    '<img data-src="holder.js/300x200" alt="300x200" src="'+value.pic+'" style="width: 300px; height:200px;">',
+                    '<div class="caption">',
+                    '<h3>标题</h3>',
+                    '<p style="height:40px; overflow:hidden;">'+value.title+'</p>',
+                    '<p><a href="#" class="btn btn-primary">查看</a></p>',
+                    '</div>',
+                    '</div>',
+                    '</li>'
+                ].join('');
+                html += arr;
+                if(num%3 == 0){
+                    htmlArr.push('<div class="row-fluid"><div class="span12"><ul class="thumbnails">'+html+'</ul></div></div>');
+                    html = '';
+                }
+                num++;
+            });
+
+            box.innerHTML = htmlArr.join('');
+        })
+    }, function(error) {
+        error.message //=> String
+    });
+</script>
