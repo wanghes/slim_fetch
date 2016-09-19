@@ -5,34 +5,16 @@
                 <label class="control-label" for="name">用户名</label>
                 <div class="controls">
                     <input type="text" id="name">
-                    <span class="help-inline">Something may have gone wrong</span>
                 </div>
             </div>
             <div class="control-group ">
                 <label class="control-label" for="password">密码</label>
                 <div class="controls">
                     <input type="password" id="password">
-                    <span class="help-inline">Please correct the error</span>
-                </div>
-            </div>
-
-            <div class="control-group ">
-                <label class="control-label" for="age">年龄</label>
-                <div class="controls">
-                    <input type="text" id="age">
-                    <span class="help-inline">Username is already taken</span>
-                </div>
-            </div>
-
-            <div class="control-group ">
-                <label class="control-label" for="sex">性别</label>
-                <div class="controls">
-                    <input type="text" id="sex">
-                    <span class="help-inline">Woohoo!</span>
                 </div>
             </div>
             <div class="control-group ">
-                <label class="control-label" ></label>
+                <label class="control-label" for=""></label>
                 <div class="controls">
                     <button type="submit" class="btn btn-primary" onclick="submitPost()">Submit</button>
                 </div>
@@ -76,7 +58,7 @@
                 sex:sex
             }),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
                 /*'Content-Type':'application/x-www-form-urlencoded'*/
             },
             credentials: "include"
@@ -86,7 +68,7 @@
                 console.log(JSON.parse(responseText));
             })
         }, function(error) {
-           alert( error.message)
+            error.message
         });
 
         return false;

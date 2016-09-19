@@ -1,6 +1,6 @@
 <div id="box"></div>
 <script>
-    var url = 'http://localhost:6500/phones';
+    var url = 'http://localhost:6500/foods';
     fetch(url, {
         method: "GET",
         credentials: "include"
@@ -38,6 +38,6 @@
             box.innerHTML =html;
         })
     }, function(error) {
-        error.message //=> String
+        error.message
     });
 </script>

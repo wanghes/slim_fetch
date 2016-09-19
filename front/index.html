@@ -10,7 +10,7 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top ">
     <div class="navbar-inner">
         <div class="container">
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -41,9 +41,13 @@
 <div class="container" style="padding-top:60px;">
     <div class="row-fluid">
         <div class="span3">
-            <ul class="nav nav-list bs-docs-sidenav" id="nav">
-                <li><a href="#register"><i class="icon-chevron-right"></i> 注册</a></li>
-                <li><a href="#login"><i class="icon-chevron-right"></i> 登录</a></li>
+            <ul class="nav nav-list bs-docs-sidenav affix" id="nav">
+                <li data-id="home"><a href="#home" ><i class="icon-chevron-right"></i> 首页</a></li>
+                <li data-id="foods"><a href="#foods" ><i class="icon-chevron-right"></i> 食物列表</a></li>
+                <li data-id="phones"><a href="#phones" ><i class="icon-chevron-right"></i> 手机列表</a></li>
+                <li data-id="articles"><a href="#articles" ><i class="icon-chevron-right"></i> 文章列表</a></li>
+                <li data-id="register"><a href="#register" ><i class="icon-chevron-right"></i> 注册</a></li>
+                <li data-id="login"><a href="#login" ><i class="icon-chevron-right"></i> 登录</a></li>
             </ul>
         </div>
         <div class="span9" id="conBox"></div>
@@ -55,9 +59,16 @@
     $.get('home.html',function(data){
         $('#conBox').html(data);
     });
-    window.onhashchange= function(){
-        var hash = location.hash;
+    function activeMenu(hash){
+        var val = hash.slice(1);
+        $("#nav li").removeClass('active');
+        $("#nav li[data-id='"+val+"']").addClass('active');
+    }
+    var hash = location.hash;
+    switchHash(hash);
+    function switchHash(hash){
         var conBox = $('#conBox');
+        activeMenu(hash);
         switch(hash){
             case '#home':
                 $.get('home.html',function(data){
@@ -74,7 +85,26 @@
                     conBox.html(data);
                 });
                 break;
+            case '#foods':
+                $.get('foods.html',function(data){
+                    conBox.html(data);
+                });
+                break;
+            case '#login':
+                $.get('login.html',function(data){
+                    conBox.html(data);
+                });
+                break;
+            case '#articles':
+                $.get('articles.html',function(data){
+                    conBox.html(data);
+                });
+                break;
         }
+    }
+    window.onhashchange= function(){
+        hash = location.hash;
+        switchHash(hash);
     }
 
 

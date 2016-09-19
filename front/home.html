@@ -1,6 +1,6 @@
 <div id="box"></div>
 <script>
-    var url = 'http://localhost:6500/foods'
+    var url = 'http://localhost:6500/foods';
     fetch(url, {
         method: "GET",
         credentials: "include"
@@ -9,11 +9,15 @@
             var box = document.querySelector('#box');
             var html = '';
             var list = JSON.parse(responseText);
-            var num = 1;
-            var htmlArr = [];
 
-            list.forEach(function(value,index){
-                var arr = [
+            var num = 0;
+            var htmlArr = [];
+            var isWrap =false;
+            var arr;
+            html += '<div class="row-fluid"><div class="span12"><ul class="thumbnails">';
+            list.forEach(function(value){
+
+                arr = [
                     '<li class="span4">',
                     '<div class="thumbnail">',
                     '<img data-src="holder.js/300x200" alt="300x200" src="'+value.pic+'" style="width: 300px; height:200px;">',
@@ -26,14 +30,12 @@
                     '</li>'
                 ].join('');
                 html += arr;
-                if(num%3 == 0){
-                    htmlArr.push('<div class="row-fluid"><div class="span12"><ul class="thumbnails">'+html+'</ul></div></div>');
-                    html = '';
-                }
+
                 num++;
             });
+            html += '</ul></div></div>';
 
-            box.innerHTML = htmlArr.join('');
+            box.innerHTML =html;
         })
     }, function(error) {
         error.message //=> String
