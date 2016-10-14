@@ -56,16 +56,18 @@
 </body>
 </html>
 <script type="text/javascript">
-    $.get('home.html',function(data){
-        $('#conBox').html(data);
-    });
     function activeMenu(hash){
         var val = hash.slice(1);
         $("#nav li").removeClass('active');
         $("#nav li[data-id='"+val+"']").addClass('active');
     }
     var hash = location.hash;
-    switchHash(hash);
+    if(hash){
+        switchHash(hash);
+    }else{
+        switchHash('#home');
+    }
+
     function switchHash(hash){
         var conBox = $('#conBox');
         activeMenu(hash);

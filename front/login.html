@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="control-group ">
-                <label class="control-label" for=""></label>
+                <label class="control-label"></label>
                 <div class="controls">
                     <button type="submit" class="btn btn-primary" onclick="submitPost()">Submit</button>
                 </div>
@@ -27,8 +27,6 @@
     function submitPost(){
         var name = document.querySelector('#name').value;
         var password = document.querySelector('#password').value;
-        var age = document.querySelector('#age').value;
-        var sex = document.querySelector('#sex').value;
 
         /*$.ajax({
          type: "POST",
@@ -49,16 +47,14 @@
          console.log(JSON.parse(result));
          }
          });*/
-        fetch('http://localhost:6500/user', {
+        fetch('http://localhost:6500/user/login', {
             method: "POST",
             body: JSON.stringify({
                 name:name,
-                password:password,
-                age:age,
-                sex:sex
+                password:password
             }),
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
                 /*'Content-Type':'application/x-www-form-urlencoded'*/
             },
             credentials: "include"
